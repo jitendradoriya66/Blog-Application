@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Blog</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="search-container" style="margin:1%">
+                <form action="{% url 'search_fun' %}" method="POST">
+                    {% csrf_token %}
+                <input type="text" class="search-input" name='search' placeholder="Search...">
+                <button class="search-btn">&#128269;</button>
+            </form>
+              </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i  style="font-size: 1.5rem;" class="fa-solid fa-house"></i></a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'trending' %}">Trending Topics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'create_blog' %}"><i style="font-size: 1.5rem;" class="fa-solid fa-plus"></i></a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i  style="font-size: 1.5rem;" class="fa-solid fa-right-from-bracket" title="Logout"></i></a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="row" style="max-width: 100%;margin-bottom:9%;">
+        <h1 class="text-center mb-4" style="margin-top: 1%;">Welcome to My Blog</h1>
+        {% for i in data%}
+
+        <div class="col-md-6 mb-3" id="post-card">
+            <div class="card">
+                <div class="card-body">
+                    <!-- <h1>{{forloop.counter}}</h1> -->
+                    <img src="{{i.image.url}}" width="90%" height="45%" alt="" style="margin:2% auto;border:5px solid black;border-radius:5%;">
+                    <h5 class="card-title">{{i.title}}</h5>
+                    <!-- <p class="card-text">{{i.content}}</p> -->
+                     
+                    <a href="{% url 'like_plus' i.id %}" style="color:black; margin:2%; text-decoration: none;">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </a>
+                    <span>
+                        {{i.l_add}}
+                    </span>
+                    <a href="{% url 'like_minus' i.id %}" style="color:black; margin:2%; text-decoration: none;">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                    </a>
+                    <span>
+                        {{i.dl_add}}
+                    </span>
+
+                    <!-- <br><br><i class="fa-regular fa-comment">{{com}}</i> -->
+                    <br><a href="{% url 'postdetails' i.id %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- <div class="col-md-6 mb-4" id="post-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sample Blog Post Title 2</h5>
+                    <p class="card-text">This is a short preview of another blog post. It gives readers an overview...</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-4">
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

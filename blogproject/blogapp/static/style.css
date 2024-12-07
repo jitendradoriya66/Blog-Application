@@ -1,0 +1,381 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+/* Navbar */
+nav.navbar {
+    background-color: #343a40;
+}
+
+nav.navbar .navbar-brand {
+    color: #fff;
+    font-size: 1.8em;
+}
+
+nav.navbar .nav-link {
+    color: #fff;
+    font-size: 1.1em;
+    padding: 10px 15px;
+}
+
+nav.navbar .nav-link:hover {
+    color: #f39c12;
+}
+
+/* Card Styles for Blog Post */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 1%;
+    margin-bottom: 2%;
+    background-color: #fff;
+    margin:0 auto;
+}
+
+.card-body {
+    margin-left:5%;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1.1em;
+}
+
+.card-footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+.card-footer a {
+    color: #007bff;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Form Inputs */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.comment-form-container {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 40px; /* Increased space to prevent footer from covering */
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+.comment-form-container .form-title {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Form Group */
+.comment-form .form-group {
+    margin-bottom: 20px;
+}
+
+/* Label */
+.comment-form .form-label {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #444;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Textarea */
+.comment-form .comment-textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Textarea Focus */
+.comment-form .comment-textarea:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 6px rgba(108, 99, 255, 0.5);
+}
+
+/* Submit Button */
+.comment-form .comment-submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c63ff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Submit Button Hover */
+.comment-form .comment-submit-btn:hover {
+    background-color: #5748e0;
+    transform: translateY(-2px);
+}
+
+/* Submit Button Active */
+.comment-form .comment-submit-btn:active {
+    transform: translateY(1px);
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination .page-item {
+    display: inline-block;
+    margin: 5px;
+}
+
+.pagination .page-item a {
+    padding: 10px 15px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination .page-item a:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+/* Styling for the Comment Container */
+.show-comment {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of comments to the next line if needed */
+    gap: 15px; /* Space between the comments */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styling for individual Comment */
+.show-comment p {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.6;
+    margin: 0; /* Removes default margin from paragraphs */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .show-comment p {
+        font-size: 1em;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .card {
+        margin-bottom: 20px;
+        border-radius: 3%;
+        margin-left: 5%;
+        margin-bottom: 5%;
+    }
+}
+/* For Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    /* Navbar */
+    nav.navbar .navbar-brand {
+        font-size: 1rem;
+    }
+
+    nav.navbar .nav-link {
+        font-size: 1em;
+        padding: 4px 5px;
+    }
+
+    /* Blog Card */
+    .card {
+        margin-bottom: 20px;
+        border-radius: 3%;
+        margin-left: 10%;
+        margin-bottom: 5%;
+    }
+
+    .card-title {
+        font-size: 1.3em;
+    }
+
+    .card-text {
+        font-size: 1em;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 3px 6px;
+    }
+
+    .btn-primary, .btn-success {
+        font-size: 0.9em;
+    }
+
+    /* Form Inputs */
+    input, textarea, select {
+        padding: 8px;
+        font-size: 1em;
+    }
+
+    /* Comments Section */
+    .comments-section {
+        padding: 15px;
+    }
+
+    .comment {
+        padding: 8px;
+    }
+
+    /* Pagination */
+    .pagination .page-item a {
+        padding: 8px 12px;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 0.9em;
+        position: fixed;
+        bottom:0;
+        width: 100%;
+
+    }
+}
+
+/* For Mobile Devices (max-width: 576px) */
+@media (max-width: 576px) {
+    /* Navbar */
+    nav.navbar .navbar-brand {
+        font-size: 1.3em;
+    }
+
+    nav.navbar .nav-link {
+        font-size: 0.9em;
+        padding: 6px 8px;
+    }
+
+    /* Blog Card */
+    .card {
+        /* margin: 0 19%; */
+        margin-left: 10%;
+        margin-bottom: 5%;
+
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+
+    .card-text {
+        font-size: 0.9em;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+
+    /* Form Inputs */
+    input, textarea, select {
+        padding: 6px;
+        font-size: 0.9em;
+    }
+
+    /* Comments Section */
+    .comments-section {
+        padding: 10px;
+        
+    }
+
+    .comment {
+        padding: 6px;
+    }
+
+    /* Pagination */
+    .pagination .page-item a {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 0.8em;
+        padding: 10px;
+        position: fixed;
+        bottom:0;
+        width: 100%;
+    }
+}
