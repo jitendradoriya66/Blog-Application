@@ -12,31 +12,175 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<style>
+    /* Pagination Container */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    /* Pagination List */
+    .pagination ul {
+        display: inline-flex;
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        margin-bottom: 7%;
+
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    /* Pagination Items */
+    .pagination ul li {
+        margin: 0;
+    }
+
+    /* Links Style */
+    .pagination ul li a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 16px;
+        color: #007bff;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Hover Effect */
+    .pagination ul li a:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    /* Active Page */
+    .pagination ul li.active a {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        cursor: default;
+    }
+
+    /* Disabled Link Style */
+    .pagination ul li.disabled a {
+        color: #cccccc;
+        pointer-events: none;
+    }
+
+    /* Footer Styles */
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .footer .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Footer Section */
+    .footer-section {
+        flex: 1 1 200px;
+        margin: 10px;
+    }
+
+    .footer-section h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #007bff;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    /* Links */
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer-section ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+        color: #007bff;
+    }
+
+    /* Social Media Links */
+    .footer-section .social-links li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .footer-section .social-links li a {
+        text-decoration: none;
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-section .social-links li a:hover {
+        background-color: white;
+        color: #007bff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .footer .container {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-section {
+            margin-bottom: 20px;
+        }
+    }
+</style>
 
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Blog</a>
-            
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="search-container" style="margin:1%">
                 <form action="{% url 'search_fun' %}" method="POST">
                     {% csrf_token %}
-                <input type="text" class="search-input" name='search' placeholder="Search...">
-                <button class="search-btn">&#128269;</button>
-            </form>
-              </div>
+                    <input type="text" class="search-input" name='search' placeholder="Search...">
+                    <button class="search-btn">&#128269;</button>
+                </form>
+            </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i  style="font-size: 1.5rem;" class="fa-solid fa-house"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i style="font-size: 1.5rem;"
+                                class="fa-solid fa-house"></i></a></li>
 
                     <li class="nav-item"><a class="nav-link" href="{% url 'trending' %}">Trending Topics</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'create_blog' %}"><i style="font-size: 1.5rem;" class="fa-solid fa-plus"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'create_blog' %}"><i
+                                style="font-size: 1.5rem;" class="fa-solid fa-plus"></i></a></li>
 
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i  style="font-size: 1.5rem;" class="fa-solid fa-right-from-bracket" title="Logout"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i style="font-size: 1.5rem;"
+                                class="fa-solid fa-right-from-bracket" title="Logout"></i></a></li>
 
 
                 </ul>
@@ -53,10 +197,11 @@
             <div class="card">
                 <div class="card-body">
                     <!-- <h1>{{forloop.counter}}</h1> -->
-                    <img src="{{i.image.url}}" width="90%" height="45%" alt="" style="margin:2% auto;border:5px solid black;border-radius:5%;">
+                    <img src="{{i.image.url}}" width="90%" height="45%" alt=""
+                        style="margin:2% auto;border:5px solid black;border-radius:5%;">
                     <h5 class="card-title">{{i.title}}</h5>
                     <!-- <p class="card-text">{{i.content}}</p> -->
-                     
+
                     <a href="{% url 'like_plus' i.id %}" style="color:black; margin:2%; text-decoration: none;">
                         <i class="fa-solid fa-thumbs-up"></i>
                     </a>
@@ -77,6 +222,29 @@
         </div>
         {% endfor %}
 
+        <div class="pagination">
+            <ul>
+                {% if data.has_previous %}
+                <li><a href="?page=1">First</a></li>
+                <li><a href="?page={{ data.previous_page_number }}">&laquo; Previous</a></li>
+                {% endif %}
+
+                {% for i in data.paginator.page_range %}
+                {% if data.number == i %}
+                <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if data.has_next %}
+                <li><a href="?page={{ data.next_page_number }}">Next &raquo;</a></li>
+                <li><a href="?page={{ data.paginator.num_pages }}">Last</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+
         <!-- <div class="col-md-6 mb-4" id="post-card">
             <div class="card">
                 <div class="card-body">
@@ -89,10 +257,38 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light text-center py-3 mt-4">
-        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    <footer class="footer">
+        <div class="container">
+            <!-- Navigation Links -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'create_blog' %}">Add Blog</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'trending' %}">Trending Blogs</a></li>
+                </ul>
+            </div>
+    
+            <!-- Pagination Info -->
+            <div class="footer-section">
+                <h4>Blog Pagination</h4>
+                <p>Page {{ data.number }} of {{ data.paginator.num_pages }}</p>
+            </div>
+    
+            <!-- Follow Us -->
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://github.com/jitendradoriya66" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
