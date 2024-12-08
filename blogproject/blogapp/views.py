@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from blogapp.models import *
 from django.core.mail import send_mail
 from django.contrib import messages
-
+from django.core.paginator import Paginator
 
 def register(request):
     if request.method == 'POST':
@@ -112,7 +112,9 @@ def home(request):
     if 'email' not in request.session:
         return redirect('login')  
     data = blog.objects.all()
-    
+    pagination=Paginator(data,4)
+    page=request.GET.get('page')
+    data=pagination.get_page(page)
     contaxt = {
         'data': data,
     }
